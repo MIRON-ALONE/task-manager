@@ -1,5 +1,7 @@
 FROM node:18-alpine
 
+RUN npm install -g yarn
+
 WORKDIR /app
 
 COPY package*.json ./
@@ -8,9 +10,7 @@ RUN yarn install --production
 
 COPY . .
 
-ENV NODE_ENV=production
-
-RUN yarn run build
+RUN npm run build
 
 RUN npx prisma generate
 
